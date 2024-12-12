@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image, ImageOps, ImageFilter
 import io
 import os
+import math
 
 # Path ke logo universitas
 logo_path = "university_logo.png"  # Sesuaikan dengan lokasi file Anda
