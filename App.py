@@ -9,7 +9,7 @@ logo_path = "university_logo.png"  # Sesuaikan dengan lokasi file Anda
 
 # Sidebar untuk navigasi menu dan logo
 if os.path.exists(logo_path):
-    st.sidebar.image(logo_path, caption="President University", use_column_width=True)
+    st.sidebar.image(logo_path, caption="President University", use_container_width=True)
 else:
     st.sidebar.error(f"Logo tidak ditemukan di {logo_path}")
 
