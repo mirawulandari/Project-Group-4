@@ -17,9 +17,8 @@ menu = st.sidebar.radio("Pilih Menu", ["About Group 4", "Application"])
 
 # Menu 1: About Group 4
 if menu == "About Group 4":
-    st.title("Project Group 4")
+    st.title("Selamat Datang di Project Group 4")
     st.subheader("Linear Algebra")
-    st.write("Selamat Datang di Project Group 4")
     st.write("Study Program: *Industrial Engineering*")
     st.write("Faculty: *Engineering*")
     st.markdown("### Member Group 4:")
