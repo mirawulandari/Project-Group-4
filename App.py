@@ -111,7 +111,7 @@ elif menu == "Application":
             byte_im = buf.getvalue()
 
             # Tombol unduh
-            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "PDF", "JPEG"])
+            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "JPG"])
             file_extension = download_format.lower()
             st.download_button(
                 label="Unduh Gambar",
