@@ -2,3 +2,4 @@ streamlit
 pillow
 io
 os
+math
