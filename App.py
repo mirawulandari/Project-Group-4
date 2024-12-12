@@ -13,7 +13,7 @@ if os.path.exists(logo_path):
 else:
     st.sidebar.error(f"Logo tidak ditemukan di {logo_path}")
 
-menu = st.sidebar.radio("Pilih Menu", ["About Group 4", "Application"])
+menu = st.sidebar.radio("Select Menu", ["About Group 4", "Application"])
 
 # Menu 1: About Group 4
 if menu == "About Group 4":
@@ -68,20 +68,20 @@ elif menu == "Application":
 
         elif option == "Kemiringan":
             skew_angle = st.slider("Pilih Sudut Kemiringan (derajat)", -45, 45, 0)
-            
+
             # Mengonversi derajat ke radian
             skew_radian = math.radians(skew_angle)
-            
+
             # Matriks transformasi affine untuk kemiringan
             transform_matrix = (1, math.tan(skew_radian), 0, 0, 1, 0)
-            
+
             # Terapkan transformasi ke gambar
             processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
 
         elif option == "Translasi":
             # Kontrol untuk translasi
-            x_shift = st.slider("Geser Horizontal (px)", -500, 500, 0)
-            y_shift = st.slider("Geser Vertikal (px)", -500, 500, 0)
+            x_shift = st.slider("Geser Horizontal (px)", -300, 300, 0)
+            y_shift = st.slider("Geser Vertikal (px)", -300, 300, 0)
             # Translasi menggunakan transformasi afine
             processed_image = image.transform(
                 image.size,
@@ -129,4 +129,3 @@ elif menu == "Application":
         )
     else:
         st.warning("Harap unggah gambar terlebih dahulu!")
-
