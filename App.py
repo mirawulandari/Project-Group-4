@@ -41,7 +41,7 @@ elif menu == "Application":
     st.write("Berikut adalah nama-nama kota yang menjadi bagian dari graph:")
 
     # Daftar nama kota
-    kota_list = ["Jakarta", "Bandung", "Surabaya", "Yogyakarta", "Denpasar"]
+    kota_list = ["Jakarta", "Bandung", "Surabaya", "Yogyakarta", "Denpasar", "Semarang", "Malang", "Medan"]
     for kota in kota_list:
         st.write(f"- {kota}")
 
@@ -68,13 +68,15 @@ elif menu == "Application":
 
         elif option == "Kemiringan":
             skew_angle = st.slider("Pilih Sudut Kemiringan (derajat)", -45, 45, 0)
-            processed_image = image.transform(
-                image.size,
-                Image.AFFINE,
-                (1, 0, 0, 0, 1, 0),
-                resample=Image.NEAREST,
-                shear=(skew_angle,)
-            )
+            
+            # Mengonversi derajat ke radian
+            skew_radian = math.radians(skew_angle)
+            
+            # Matriks transformasi affine untuk kemiringan
+            transform_matrix = (1, math.tan(skew_radian), 0, 0, 1, 0)
+            
+            # Terapkan transformasi ke gambar
+            processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
 
         elif option == "Translasi":
             # Kontrol untuk translasi
@@ -127,3 +129,4 @@ elif menu == "Application":
         )
     else:
         st.warning("Harap unggah gambar terlebih dahulu!")
+
