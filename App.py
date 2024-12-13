@@ -40,7 +40,7 @@ elif menu == "Application":
         st.write("Unggah gambar Anda dan pilih efek yang diinginkan.") 
 
         # Upload file gambar
-        uploaded_file = st.file_uploader("Unggah gambar Anda", type=["png", "jpg", "pdf"]) 
+        uploaded_file = st.file_uploader("Unggah gambar Anda", type=["jpg", "png", "pdf"]) 
         if uploaded_file:
             # Membuka gambar
             image = Image.open(uploaded_file)
@@ -49,7 +49,7 @@ elif menu == "Application":
             # Pilihan efek pemrosesan
             option = st.selectbox(
                 "Pilih efek gambar:",
-                ["Rotasi", "Translasi", "Distorsi", "Kontur", "Greyscale"] 
+                ["Rotasi", "Kemiringan", "Distorsi", "Kontur", "Greyscale"] 
             )
 
             # Terapkan efek
@@ -57,17 +57,17 @@ elif menu == "Application":
                 angle = st.slider("Pilih Sudut Rotasi (derajat)", -180, 180, 0)
                 processed_image = image.rotate(angle)
 
-            elif option == "Translasi":
-                # Kontrol untuk translasi
-                x_shift = st.slider("Geser Horizontal (px)", -500, 500, 0)
-                y_shift = st.slider("Geser Vertikal (px)", -500, 500, 0)
-                # Translasi menggunakan transformasi afine
-                processed_image = image.transform(
-                    image.size,
-                    Image.AFFINE,
-                    (1, 0, x_shift, 0, 1, y_shift),
-                    resample=Image.NEAREST
-                )
+            elif option == "Kemiringan":
+                skew_angle = st.slider("Pilih Sudut Kemiringan (derajat)", -45, 45, 0)
+
+                # Mengonversi derajat ke radian
+                skew_radian = math.radians(skew_angle)
+
+                # Matriks transformasi affine untuk kemiringan
+                transform_matrix = (1, math.tan(skew_radian), 0, 0, 1, 0)
+
+                # Terapkan transformasi ke gambar
+                processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
 
             elif option == "Distorsi":
                 # Kontrol untuk tingkat distorsi
