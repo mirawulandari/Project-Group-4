@@ -49,7 +49,7 @@ elif menu == "Application":
             # Pilihan efek pemrosesan
             option = st.selectbox(
                 "Pilih efek gambar:",
-                ["Rotasi", "Translasi", "Skala", "Distorsi", "Kemiringan" "Kontur", "Greyscale"] 
+                ["Rotasi", "Translasi", "Skala", "Distorsi", "Kemiringan", "Kontur", "Greyscale"] 
             )
 
             # Terapkan efek
