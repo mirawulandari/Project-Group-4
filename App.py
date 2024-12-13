@@ -20,7 +20,7 @@ if menu == "About Group 4":
     st.subheader("Transformasi Gambar") 
     st.write("Study Program: *Industrial Engineering*")
     st.write("Faculty: *Engineering*")
-    st.markdown("### Member Group 4:")
+    st.markdown("### Member Group 4:")  
     st.write("1. Mira Wulandari")
     st.write("2. Yohanes Surya Priyoko")
 
@@ -49,7 +49,7 @@ elif menu == "Application":
             # Pilihan efek pemrosesan
             option = st.selectbox(
                 "Pilih efek gambar:",
-                ["Rotasi", "Translasi", "Skala", "Distorsi", "Kemiringan", "Kontur", "Greyscale"] 
+                ["Rotasi", "Skala", "Distorsi", "Kemiringan", "Kontur", "Greyscale"] 
             )
 
             # Terapkan efek
@@ -68,18 +68,6 @@ elif menu == "Application":
 
                 # Terapkan transformasi ke gambar
                 processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
-
-            elif option == "Translasi":
-                # Kontrol untuk translasi
-                x_shift = st.slider("Geser Horizontal (px)", -500, 500, 0)
-                y_shift = st.slider("Geser Vertikal (px)", -500, 500, 0)
-                # Translasi menggunakan transformasi afine
-                processed_image = image.transform(
-                    image.size,
-                    Image.AFFINE,
-                    (1, 0, x_shift, 0, 1, y_shift),
-                    resample=Image.NEAREST
-                )
 
             elif option == "Skala":
                 # Kontrol untuk skala
