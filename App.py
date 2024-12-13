@@ -7,18 +7,17 @@ import math
 # Path ke logo universitas
 logo_path = "university_logo.png"  # Sesuaikan dengan lokasi file Anda
 
-# Sidebar untuk navigasi menu dan logo
-if os.path.exists(logo_path):
-    st.sidebar.image(logo_path, caption="President University", use_container_width=True)
-else:
-    st.sidebar.error(f"Logo tidak ditemukan di {logo_path}")
-
-menu = st.sidebar.radio("Pilih Menu", ["About Group 4", "Application"])
+menu = st.sidebar.radio("Select Menu", ["About Group 4", "Application"])
 
 # Menu 1: About Group 4
 if menu == "About Group 4":
-    st.title("Selamat Datang di Project Group 4")
-    st.subheader("Linear Algebra")
+    if os.path.exists(logo_path):
+        st.image(logo_path, caption="President University", use_container_width=True)
+    else:
+        st.error(f"Logo tidak ditemukan di {logo_path}")
+
+    st.title("Selamat Datang di Website Group 4") 
+    st.subheader("Transformasi Gambar") 
     st.write("Study Program: *Industrial Engineering*")
     st.write("Faculty: *Engineering*")
     st.markdown("### Member Group 4:")
@@ -37,11 +36,11 @@ if menu == "About Group 4":
 # Menu 2: Application
 elif menu == "Application":
     with st.container():
-        st.title("Aplikasi Pemrosesan Gambar")
-        st.write("Unggah gambar Anda dan pilih efek pemrosesan yang diinginkan.")
+        st.title("Aplikasi Transformasi Gambar") 
+        st.write("Unggah gambar Anda dan pilih efek yang diinginkan.") 
 
         # Upload file gambar
-        uploaded_file = st.file_uploader("Unggah gambar Anda", type=["jpg", "png", "jpeg"])
+        uploaded_file = st.file_uploader("Unggah gambar Anda", type=["jpg", "png", "pdf"]) 
         if uploaded_file:
             # Membuka gambar
             image = Image.open(uploaded_file)
@@ -50,7 +49,7 @@ elif menu == "Application":
             # Pilihan efek pemrosesan
             option = st.selectbox(
                 "Pilih efek gambar:",
-                ["Rotasi", "Translasi", "Skala", "Distorsi", "Kontur", "Greyscale", "Kemiringan"]
+                ["Rotasi", "Translasi", "Skala", "Distorsi", "Kemiringan" "Kontur", "Greyscale"] 
             )
 
             # Terapkan efek
@@ -111,7 +110,7 @@ elif menu == "Application":
             byte_im = buf.getvalue()
 
             # Tombol unduh
-            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "JPG"])
+            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "JPG" "PDF"]) 
             file_extension = download_format.lower()
             st.download_button(
                 label="Unduh Gambar",
