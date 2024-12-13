@@ -57,7 +57,7 @@ elif menu == "Application":
                 angle = st.slider("Pilih Sudut Rotasi (derajat)", -180, 180, 0)
                 processed_image = image.rotate(angle)
 
-            elif option == "Kemiringan":
+          elif option == "Kemiringan":
                 skew_angle = st.slider("Pilih Sudut Kemiringan (derajat)", -45, 45, 0)
 
                 # Mengonversi derajat ke radian
