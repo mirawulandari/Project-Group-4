@@ -12,7 +12,7 @@ menu = st.sidebar.radio("Select Menu", ["About Group 4", "Application"])
 # Menu 1: About Group 4
 if menu == "About Group 4":
     if os.path.exists(logo_path):
-        st.image(logo_path, caption="President University", use_container_width=True)
+        st.image(logo_path, caption="President University", width=100)
     else:
         st.error(f"Logo tidak ditemukan di {logo_path}")
 
