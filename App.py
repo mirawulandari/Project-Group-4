@@ -57,7 +57,7 @@ elif menu == "Application":
                 angle = st.slider("Pilih Sudut Rotasi (derajat)", -180, 180, 0)
                 processed_image = image.rotate(angle)
 
-          elif option == "Kemiringan":
+          eelif option == "Kemiringan":
                 skew_angle = st.slider("Pilih Sudut Kemiringan (derajat)", -45, 45, 0)
 
                 # Mengonversi derajat ke radian
@@ -68,7 +68,7 @@ elif menu == "Application":
 
                 # Terapkan transformasi ke gambar
                 processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
-
+        
             elif option == "Distorsi":
                 # Kontrol untuk tingkat distorsi
                 blur_radius = st.slider("Tingkat Blur (radius)", 0, 10, 5)
