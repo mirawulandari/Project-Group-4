@@ -49,7 +49,7 @@ elif menu == "Application":
             # Pilihan efek pemrosesan
             option = st.selectbox(
                 "Pilih efek gambar:",
-                ["Rotasi", "Skala", "Distorsi", "Kemiringan", "Kontur", "Greyscale"] 
+                ["Rotasi", "Distorsi", "Kemiringan", "Kontur", "Greyscale"] 
             )
 
             # Terapkan efek
@@ -68,13 +68,6 @@ elif menu == "Application":
 
                 # Terapkan transformasi ke gambar
                 processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
-
-            elif option == "Skala":
-                # Kontrol untuk skala
-                scale_factor = st.slider("Faktor Skala", 0.1, 3.0, 1.0)
-                width, height = image.size
-                new_size = (int(width * scale_factor), int(height * scale_factor))
-                processed_image = image.resize(new_size)
 
             elif option == "Distorsi":
                 # Kontrol untuk tingkat distorsi
