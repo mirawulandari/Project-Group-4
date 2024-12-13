@@ -12,7 +12,7 @@ menu = st.sidebar.radio("Select Menu", ["About Group 4", "Application"])
 # Menu 1: About Group 4
 if menu == "About Group 4":
     if os.path.exists(logo_path):
-        st.image(logo_path, caption="President University", width=200)
+        st.markdown(f'<div style="text-align: center;"><img src="data:image/png;base64,{open(logo_path, "rb").read().hex()}" alt="Logo" width="100"></div>', unsafe_allow_html=True)
     else:
         st.error(f"Logo tidak ditemukan di {logo_path}")
 
@@ -20,7 +20,7 @@ if menu == "About Group 4":
     st.subheader("Transformasi Gambar") 
     st.write("Study Program: *Industrial Engineering*")
     st.write("Faculty: *Engineering*")
-    st.markdown("### Member Group 4:")  
+    st.markdown("### Member Group 4:")
     st.write("1. Mira Wulandari")
     st.write("2. Yohanes Surya Priyoko")
 
@@ -49,7 +49,7 @@ elif menu == "Application":
             # Pilihan efek pemrosesan
             option = st.selectbox(
                 "Pilih efek gambar:",
-                ["Rotasi", "Distorsi", "Kemiringan", "Kontur", "Greyscale"] 
+                ["Rotasi", "Translasi", "Skala", "Distorsi", "Kemiringan" "Kontur", "Greyscale"] 
             )
 
             # Terapkan efek
@@ -57,7 +57,7 @@ elif menu == "Application":
                 angle = st.slider("Pilih Sudut Rotasi (derajat)", -180, 180, 0)
                 processed_image = image.rotate(angle)
 
-          eelif option == "Kemiringan":
+            elif option == "Kemiringan":
                 skew_angle = st.slider("Pilih Sudut Kemiringan (derajat)", -45, 45, 0)
 
                 # Mengonversi derajat ke radian
@@ -68,7 +68,26 @@ elif menu == "Application":
 
                 # Terapkan transformasi ke gambar
                 processed_image = image.transform(image.size, Image.AFFINE, transform_matrix, resample=Image.NEAREST)
-        
+
+            elif option == "Translasi":
+                # Kontrol untuk translasi
+                x_shift = st.slider("Geser Horizontal (px)", -500, 500, 0)
+                y_shift = st.slider("Geser Vertikal (px)", -500, 500, 0)
+                # Translasi menggunakan transformasi afine
+                processed_image = image.transform(
+                    image.size,
+                    Image.AFFINE,
+                    (1, 0, x_shift, 0, 1, y_shift),
+                    resample=Image.NEAREST
+                )
+
+            elif option == "Skala":
+                # Kontrol untuk skala
+                scale_factor = st.slider("Faktor Skala", 0.1, 3.0, 1.0)
+                width, height = image.size
+                new_size = (int(width * scale_factor), int(height * scale_factor))
+                processed_image = image.resize(new_size)
+
             elif option == "Distorsi":
                 # Kontrol untuk tingkat distorsi
                 blur_radius = st.slider("Tingkat Blur (radius)", 0, 10, 5)
@@ -91,7 +110,7 @@ elif menu == "Application":
             byte_im = buf.getvalue()
 
             # Tombol unduh
-            download_format = st.selectbox("Pilih format unduhan:", ["JPG", "PNG", "PDF"]) 
+            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "JPG" "PDF"]) 
             file_extension = download_format.lower()
             st.download_button(
                 label="Unduh Gambar",
