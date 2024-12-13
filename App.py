@@ -12,7 +12,7 @@ menu = st.sidebar.radio("Select Menu", ["About Group 4", "Application"])
 # Menu 1: About Group 4
 if menu == "About Group 4":
     if os.path.exists(logo_path):
-        st.image(logo_path, caption="President University", width=200, use_column_width=False, output_format="auto")
+        st.image(logo_path, caption="President University", width=200, use_container_width=False, output_format="auto")
     else:
         st.error(f"Logo tidak ditemukan di {logo_path}")
 
@@ -40,7 +40,7 @@ elif menu == "Application":
         st.write("Unggah gambar Anda dan pilih efek yang diinginkan.") 
 
         # Upload file gambar
-        uploaded_file = st.file_uploader("Unggah gambar Anda", type=["jpg", "png", "pdf"]) 
+        uploaded_file = st.file_uploader("Unggah gambar Anda", type=["png", "jpg", "pdf"]) 
         if uploaded_file:
             # Membuka gambar
             image = Image.open(uploaded_file)
@@ -91,7 +91,7 @@ elif menu == "Application":
             byte_im = buf.getvalue()
 
             # Tombol unduh
-            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "JPG" "PDF"]) 
+            download_format = st.selectbox("Pilih format unduhan:", ["PNG", "JPG", "PDF"]) 
             file_extension = download_format.lower()
             st.download_button(
                 label="Unduh Gambar",
